@@ -6,7 +6,6 @@ A strategy boardgame that runs on your browser
 - `npm install`
 - `npm run build`
 - `npm run dev`
-- go to http://localhost:3000/
 
 # Creator
 
