@@ -1,0 +1,26 @@
+{
+  "name": "vilaland",
+  "version": "0.0.1",
+  "description": "Vilaland the game",
+  "repository": {
+    "type": "git"
+  },
+  "author": "Jonathan Nascimento",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "serve": "nodemon dist/index.js",
+    "watch": "webpack --watch",
+    "dev": "lite-server"
+  },
+  "dependencies": {
+    "phaser-ce": "^2.10.1",
+    "ts-loader": "^6.0.4"
+  },
+  "devDependencies": {
+    "lite-server": "^2.5.4",
+    "typescript": "^2.7.2",
+    "webpack": "4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
