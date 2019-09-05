@@ -1,13 +1,25 @@
+const path = require('path');
+
 module.exports = {
-    entry: "./src/main.ts",
-    mode: "development",
-    output: {
-        filename: "bundle.js"
-    },
-    resolve: {
-        extensions: [".webpack.js", ".web.js", ".ts", ".js"]
-    },
-    module: {
-        rules: [{ test: /\.ts$/, loader: "ts-loader" }]
+  entry: './src/main.ts',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: [".webpack.js", '.ts', '.tsx', '.js' ],
+    alias: {
+        src: path.resolve(__dirname, 'src/'),
     }
- }
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  mode: 'development'
+};

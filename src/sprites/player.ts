@@ -1,17 +1,24 @@
-import { ArcadeMovements } from './../commands/arcadeMovements';
+import "phaser"
+import { MovementOrder } from "src/commands/movementOrder";
 
-export class Player extends Phaser.Sprite {
-  private cursor: Phaser.CursorKeys;
+export class Player extends Phaser.Physics.Arcade.Sprite {
+  public body: Phaser.Physics.Arcade.Body;
 
-  constructor(game: Phaser.Game, x: number, y: number, asset: string, key: string) {
-    super(game, x, y, asset, key);
-    this.anchor.setTo(0.5);
-    this.cursor = this.game.input.keyboard.createCursorKeys();
-    this.game.physics.p2.enable(this);
-    // this.body.fixedRotation = true;
+  constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
+    super(scene, x, y, 'tileset', key);
+    scene.add.existing(this);
+    scene.physics.world.enableBody(this);
+    this.body.setCollideWorldBounds(true);
+    this.setDepth(1000);//z-index
   }
 
   update() {
-    ArcadeMovements.move(this, this.cursor);
+    if (MovementOrder.orders.length > 0) {
+      for (let orderNumber in MovementOrder.orders) {
+        this.x = MovementOrder.orders[orderNumber].x;
+        this.y = MovementOrder.orders[orderNumber].y;
+        MovementOrder.orders.splice(Number(orderNumber), 1);
+      }
+    }
   }
 }

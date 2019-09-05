@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "target": "es6",
+        "target": "es5",
         "noImplicitAny": true,
         "moduleResolution": "classic",
         "sourceMap": true,
@@ -15,7 +15,7 @@
         }
     },
     "files": [
-        "./node_modules/phaser-ce/typescript/phaser.comments.d.ts"
+        "./node_modules/phaser/types/phaser.d.ts"
     ],
     "include": [
         "src/**/*"

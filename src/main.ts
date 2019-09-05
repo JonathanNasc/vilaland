@@ -1,18 +1,23 @@
-import { Boot } from './states/boot';
-import { Game } from './states/game';
-import { Splash } from './states/splash';
+import "phaser"
+import { GameScene } from "./scenes/gameScene";
+
+const doc = document.documentElement;
+const config: Phaser.Types.Core.GameConfig = {
+  title: "vilaland",
+  width: doc.clientWidth,
+  height: doc.clientHeight,
+  parent: "game",
+  scene: [GameScene],
+  backgroundColor: "#000",
+  physics: {
+    default: "arcade"
+  }
+};
 
 export class Main extends Phaser.Game {
-    constructor() {
-        const doc = document.documentElement;
-        const width = doc.clientWidth;
-        const height = doc.clientHeight;
-        super(width, height, Phaser.CANVAS, 'content', null);
-
-        this.state.add('Boot', Boot, true);
-        this.state.add('Splash', Splash, false);
-        this.state.add('Game', Game, false);
-    }
+  constructor(config: Phaser.Types.Core.GameConfig) {
+    super(config);
+  }
 }
 
-new Main();
+new Main(config);
