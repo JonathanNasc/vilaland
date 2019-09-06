@@ -10,7 +10,7 @@ export class DefaultObjectsGenerator {
         const count_of_streets = constWorld/tile;
 
         for (let i = 1; i <= count_of_streets; i++) {
-            new Street(scene, x_position, i * tile - tile)
+            new Street(scene, x_position, i * tile - (tile/2))
         }
     }
 
