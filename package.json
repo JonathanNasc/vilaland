@@ -9,18 +9,15 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "serve": "nodemon dist/index.js",
-    "watch": "webpack --watch",
-    "dev": "lite-server"
+    "start": "webpack --watch & live-server --port=8085"
   },
-  "dependencies": {
-    "phaser-ce": "^2.10.1",
-    "ts-loader": "^6.0.4"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "lite-server": "^2.5.4",
-    "typescript": "^2.7.2",
-    "webpack": "4.39.3",
+    "live-server": "^1.2.1",
+    "phaser": "^3.19.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   }
 }
