@@ -34,7 +34,7 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
             delay: 0,
             alpha: {
               getStart: () => 0,
-              getEnd: () => 0.1
+              getEnd: () => 0.08
             }
           });
     }

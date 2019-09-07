@@ -48,6 +48,6 @@ export class GameScene extends Phaser.Scene {
     this.physics.world.setBounds(0, 0, constWorld, constWorld);
     this.cameras.main.setBounds(0, 0, constWorld, constWorld);
     this.physics.world.setBoundsCollision();
-    this.cameras.main.startFollow(this.player);
+    this.cameras.main.startFollow(this.player, false, 0.05, 0.05);
   }
 };
