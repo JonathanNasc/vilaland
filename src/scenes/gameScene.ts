@@ -11,6 +11,7 @@ export class GameScene extends Phaser.Scene {
   private grass: Phaser.GameObjects.TileSprite;
   private player: Player;
   private interactivearea: InteractiveArea;
+  private keys: any;
 
   constructor() {
     super({
@@ -32,11 +33,12 @@ export class GameScene extends Phaser.Scene {
     this.add.tileSprite(constWorld / 2 - tile, tile * 2 - tile /2, 88, 120, 'tileset', 'house').setDepth(100);
     this.add.tileSprite(constWorld / 2 - tile, tile * 3 - tile /2, 104, 120, 'tileset', 'shed').setDepth(100);
     this.add.tileSprite(constWorld / 2 - tile, tile * 4 - tile /2, 64, 80, 'tileset', 'store').setDepth(100);
-    this.add.tileSprite(constWorld / 2 + 1 * tile, tile * 4 - tile /2, 53, 96, 'tileset', 'tree1').setDepth(100);
-    this.add.tileSprite(constWorld / 2 + 1 * tile - 40, tile * 4 - tile /2 +10, 53, 96, 'tileset', 'tree1').setDepth(100);
+    this.add.tileSprite(constWorld / 2 + 1 * tile, tile * 2 - tile /2, 53, 96, 'tileset', 'tree1').setDepth(100);
+    this.add.tileSprite(constWorld / 2 + 1 * tile - 50, tile * 4 - tile /2 +10, 76, 70, 'tileset', 'stone_large').setDepth(100);
 
     //menu bar
     GameStatus.init(this);
+    this.keys = this.input.keyboard.addKeys('G,S,W,B');//TODO remove it
 
     this.player = new Player(this, constWorld / 2, 0, 'player_red');
     this.interactivearea = new InteractiveArea(this, -tile*3, -tile*3);
@@ -46,6 +48,10 @@ export class GameScene extends Phaser.Scene {
   update(time: any): void {
     this.player.update();
     this.interactivearea.update();
+
+    if (this.keys.G.isDown) {
+      GameStatus.gold.data.set('value', GameStatus.gold.data.get('value') + 10);
+    }
   }
 
   private setWorldAndCamera(): void {

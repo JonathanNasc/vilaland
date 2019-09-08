@@ -1,7 +1,7 @@
 import "phaser"
 
 const TileSprite = Phaser.GameObjects.TileSprite;
-const inicialValue = 999;
+const inicialValue = 10;
 
 export class GameStatus {
 
@@ -49,9 +49,10 @@ export class GameStatus {
     tileSprite.setScrollFactor(0);
     tileSprite.setDataEnabled();
     tileSprite.setData('value', inicialValue);
+    text.setScrollFactor(0);
 
-    tileSprite.on('setData', (gameObject: any, key: string, value: any) => {
-      if (key == 'value') text.setText(value + "");
+    tileSprite.on('changedata', (gameObject: any, key: string, value: any) => {
+      text.setText(gameObject.data.get('value'));
     });
 
     scene.add.existing(tileSprite);
