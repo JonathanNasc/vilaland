@@ -9,6 +9,9 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: "game",
   scene: [GameScene],
   backgroundColor: "#000",
+  dom: {
+    createContainer: true
+  },
   physics: {
     default: "arcade"
   }

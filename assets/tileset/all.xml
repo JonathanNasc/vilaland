@@ -3,8 +3,8 @@
 	<SubTexture name="tree_small2" x="1030" y="728" width="37" height="66"/>
 	<SubTexture name="tree1" x="1023" y="0" width="53" height="96"/>
 	<SubTexture name="tree2" x="838" y="736" width="28" height="30"/>
-	<SubTexture name="medievalEnvironment_05" x="766" y="736" width="72" height="30"/>
-	<SubTexture name="wood" x="804" y="603" width="36" height="32"/>
+	<SubTexture name="wood" x="795" y="736" width="72" height="30"/>
+	<SubTexture name="stone_small_x" x="804" y="603" width="36" height="32"/>
 	<SubTexture name="stone_small" x="976" y="963" width="64" height="56"/>
 	<SubTexture name="stone_medium" x="950" y="535" width="76" height="64"/>
 	<SubTexture name="stone_large" x="950" y="465" width="76" height="70"/>

@@ -4,7 +4,7 @@ import { Player } from "src/sprites/player";
 const STATUS_OK = "ok";
 const STATUS_PENDING = "pe";
 const STATUS_MOVING = "mv";
-const VELOCITY = 900;
+const VELOCITY = 1200;
 
 export class MovementOrder {
 
