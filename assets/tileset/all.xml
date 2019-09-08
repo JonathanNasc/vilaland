@@ -3,7 +3,7 @@
 	<SubTexture name="tree_small2" x="1030" y="728" width="37" height="66"/>
 	<SubTexture name="tree1" x="1023" y="0" width="53" height="96"/>
 	<SubTexture name="tree2" x="838" y="736" width="28" height="30"/>
-	<SubTexture name="wood" x="795" y="736" width="72" height="30"/>
+	<SubTexture name="wood" x="795" y="737" width="72" height="30"/>
 	<SubTexture name="stone_small_x" x="804" y="603" width="36" height="32"/>
 	<SubTexture name="stone_small" x="976" y="963" width="64" height="56"/>
 	<SubTexture name="stone_medium" x="950" y="535" width="76" height="64"/>
@@ -11,7 +11,7 @@
 	<SubTexture name="stone_big" x="950" y="395" width="76" height="70"/>
 	<SubTexture name="medievalEnvironment_11" x="950" y="325" width="76" height="70"/>
 	<SubTexture name="gold" x="903" y="255" width="40" height="46"/>
-	<SubTexture name="bronze_stone_s" x="768" y="603" width="36" height="32"/>
+	<SubTexture name="bronze_stone_s" x="769" y="603" width="36" height="32"/>
 	<SubTexture name="bronze_stone_m" x="952" y="190" width="64" height="56"/>
 	<SubTexture name="bronze_stone_l" x="900" y="950" width="76" height="64"/>
 	<SubTexture name="bronze_stone_lx" x="901" y="1014" width="75" height="70"/>
