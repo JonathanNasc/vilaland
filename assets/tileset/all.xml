@@ -10,6 +10,7 @@
 	<SubTexture name="stone_large" x="950" y="465" width="76" height="70"/>
 	<SubTexture name="stone_big" x="950" y="395" width="76" height="70"/>
 	<SubTexture name="medievalEnvironment_11" x="950" y="325" width="76" height="70"/>
+	<SubTexture name="coin" x="1080" y="858" width="36" height="58"/>
 	<SubTexture name="gold" x="903" y="255" width="40" height="46"/>
 	<SubTexture name="bronze_stone_s" x="769" y="603" width="36" height="32"/>
 	<SubTexture name="bronze_stone_m" x="952" y="190" width="64" height="56"/>

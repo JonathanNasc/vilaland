@@ -19,7 +19,7 @@ export class GameStatus {
 
   private static initGold(scene: Phaser.Scene) {
     this.createRectanglePair(scene, 40);
-    GameStatus.gold = this.createStatusIcon(scene, 40, 'gold');
+    GameStatus.gold = this.createStatusIcon(scene, 40, 'coin');
   }
 
   private static initStone(scene: Phaser.Scene) {
@@ -57,6 +57,7 @@ export class GameStatus {
 
     scene.add.existing(tileSprite);
     return tileSprite;
+
   }
 
 }
