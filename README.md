@@ -7,5 +7,7 @@ A strategy boardgame that runs on your browser
 - `npm start`
 
 # Creator
-
 jonathan.nasc@live.com
+
+# Assets
+https://kenney.nl

@@ -3,7 +3,7 @@ import { Player } from "src/sprites/player";
 import { constWorld, tile } from "src/utils/gameConfigurations"
 import { DefaultObjectsGenerator } from "src/commands/defaultObjectsGenerator";
 import { InteractiveArea } from "src/sprites/interactiveArea";
-import { GameStatus } from "src/components/gameStatus";
+import { Resources } from "src/components/resources";
 
 const doc = document.documentElement;
 
@@ -37,7 +37,7 @@ export class GameScene extends Phaser.Scene {
     this.add.tileSprite(constWorld / 2 + 1 * tile - 50, tile * 4 - tile /2 +10, 76, 70, 'tileset', 'stone_large').setDepth(100);
 
     //menu bar
-    GameStatus.init(this);
+    Resources.init(this);
     this.keys = this.input.keyboard.addKeys('G,S,W,B');//TODO remove it
 
     this.player = new Player(this, constWorld / 2, 0, 'player_red');
@@ -50,7 +50,7 @@ export class GameScene extends Phaser.Scene {
     this.interactivearea.update();
 
     if (this.keys.G.isDown) {
-      GameStatus.gold.data.set('value', GameStatus.gold.data.get('value') + 10);
+      Resources.gold.add(10);
     }
   }
 
