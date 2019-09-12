@@ -3,7 +3,12 @@ import { MovementOrder } from "src/commands/movementOrder";
 import { InteractiveArea } from "./interactiveArea";
 
 export class Street extends Phaser.GameObjects.TileSprite {
+  
   public body: Phaser.Physics.Arcade.Body;
+  public streetUp: Street;
+  public streetDown: Street;
+  public streetRight: Street;
+  public streetLeft: Street;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 60, 128, 'tileset', 'street_vertical_t');

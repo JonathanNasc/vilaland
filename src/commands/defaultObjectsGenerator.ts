@@ -8,10 +8,21 @@ export class DefaultObjectsGenerator {
     public static makeMainStreet(scene: Phaser.Scene) {
         const x_position: number = constWorld/2;
         const count_of_streets = constWorld/tile;
+        let pastStreet: Street;
 
         for (let i = 1; i <= count_of_streets; i++) {
-            new Street(scene, x_position, i * tile - (tile/2))
+            let currentStreet = new Street(scene, x_position, i * tile - (tile/2));
+            pastStreet = DefaultObjectsGenerator.setStreetReferences(currentStreet, pastStreet);
         }
+    }
+
+    private static setStreetReferences(currentStreet: Street, pastStreet: Street | null): Street {
+        if (pastStreet) {
+            pastStreet.streetDown = currentStreet;
+        }
+
+        currentStreet.streetUp = pastStreet;
+        return currentStreet;
     }
 
     // private static generateResource(count:number, generator: () => void) {

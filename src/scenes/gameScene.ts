@@ -30,11 +30,13 @@ export class GameScene extends Phaser.Scene {
     DefaultObjectsGenerator.makeMainStreet(this);
 
     //testing sprites
-    this.add.tileSprite(constWorld / 2 - tile, tile * 2 - tile /2, 88, 120, 'tileset', 'house').setDepth(100);
+    this.add.tileSprite(constWorld / 2 - tile, tile * 2 - tile /2, 88, 120, 'tileset', 'house').setDepth(100).setInteractive({ cursor: 'pointer' });
     this.add.tileSprite(constWorld / 2 - tile, tile * 3 - tile /2, 104, 120, 'tileset', 'shed').setDepth(100);
     this.add.tileSprite(constWorld / 2 - tile, tile * 4 - tile /2, 64, 80, 'tileset', 'store').setDepth(100);
     this.add.tileSprite(constWorld / 2 + 1 * tile, tile * 2 - tile /2, 53, 96, 'tileset', 'tree1').setDepth(100);
     this.add.tileSprite(constWorld / 2 + 1 * tile - 50, tile * 4 - tile /2 +10, 76, 70, 'tileset', 'stone_large').setDepth(100);
+    this.add.tileSprite(constWorld / 2 - tile, tile * 7 - tile /2, 88, 120, 'tileset', 'house').setDepth(100);
+
 
     //menu bar
     Resources.init(this);
