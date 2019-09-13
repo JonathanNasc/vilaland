@@ -14,7 +14,7 @@ export class Street extends Phaser.GameObjects.TileSprite {
     super(scene, x, y, 60, 128, 'tileset', 'street_vertical_t');
     scene.add.existing(this);
     // scene.physics.world.enableBody(this, Phaser.Physics.Arcade.STATIC_BODY);
-    this.setInteractive();
+    this.setInteractive({cursor: 'pointer'});
     this.setDepth(50);
     this.on('pointerdown', this.onPointerDown);
   }

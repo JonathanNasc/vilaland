@@ -4,11 +4,14 @@ import { constWorld, tile } from "src/utils/gameConfigurations"
 import { DefaultObjectsGenerator } from "src/commands/defaultObjectsGenerator";
 import { InteractiveArea } from "src/sprites/interactiveArea";
 import { Resources } from "src/components/resources";
+import { Hostel } from "src/sprites/hostel";
+import { Building } from "src/components/building";
 
 const doc = document.documentElement;
 
 export class GameScene extends Phaser.Scene {
-  private grass: Phaser.GameObjects.TileSprite;
+  public buildings: Building[] = [];
+  
   private player: Player;
   private interactivearea: InteractiveArea;
   private keys: any;
@@ -26,17 +29,11 @@ export class GameScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.grass = this.add.tileSprite(0, 0, constWorld * 2, constWorld * 2, 'tileset', 'grass');
+    this.add.tileSprite(0, 0, constWorld * 2, constWorld * 2, 'tileset', 'grass');
     DefaultObjectsGenerator.makeMainStreet(this);
 
     //testing sprites
-    this.add.tileSprite(constWorld / 2 - tile, tile * 2 - tile /2, 88, 120, 'tileset', 'house').setDepth(100).setInteractive({ cursor: 'pointer' });
-    this.add.tileSprite(constWorld / 2 - tile, tile * 3 - tile /2, 104, 120, 'tileset', 'shed').setDepth(100);
-    this.add.tileSprite(constWorld / 2 - tile, tile * 4 - tile /2, 64, 80, 'tileset', 'store').setDepth(100);
-    this.add.tileSprite(constWorld / 2 + 1 * tile, tile * 2 - tile /2, 53, 96, 'tileset', 'tree1').setDepth(100);
-    this.add.tileSprite(constWorld / 2 + 1 * tile - 50, tile * 4 - tile /2 +10, 76, 70, 'tileset', 'stone_large').setDepth(100);
-    this.add.tileSprite(constWorld / 2 - tile, tile * 7 - tile /2, 88, 120, 'tileset', 'house').setDepth(100);
-
+    this.buildings.push(new Hostel(this, constWorld / 2 - tile, tile * 7 - tile /2));
 
     //menu bar
     Resources.init(this);
@@ -49,7 +46,7 @@ export class GameScene extends Phaser.Scene {
 
   update(time: any): void {
     this.player.update();
-    this.interactivearea.update();
+    this.interactivearea.update(this);
 
     if (this.keys.G.isDown) {
       Resources.gold.add(10);
