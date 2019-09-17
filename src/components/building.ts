@@ -8,7 +8,7 @@ export class Building extends Phaser.Physics.Arcade.Sprite {
     constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
         super(scene, x, y, 'tileset', key);
         scene.add.existing(this);
-        this.setDepth(100);
+        this.setDepth(70);
         this.gridPosition = GridPosition.byObject(this);
     }
 

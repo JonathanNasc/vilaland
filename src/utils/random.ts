@@ -8,4 +8,8 @@ export class Random {
     public static string(options: Array<string>): string {
         return options[Random.int(options.length)];
     }
+
+    public static percent(totalValue: number, percent: number): number {
+        return Math.ceil(percent * 0.01 * totalValue);
+     } 
 }

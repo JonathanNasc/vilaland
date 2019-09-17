@@ -1,17 +1,38 @@
 import "phaser";
+import { GridPosition } from "src/components/gridPosition";
+import { tile, constWorld } from "src/utils/gameConfigurations";
+import { Random } from "src/utils/random";
 
-const VALUE = 'value';
+export class Resource extends Phaser.Physics.Arcade.Sprite {
 
-export class Resource extends Phaser.GameObjects.TileSprite {
+    public gridPosition: GridPosition;
 
-    public add(amount:number): void {
-        let currentAmout = this.data.get(VALUE);
-        this.data.set(VALUE, currentAmout + amount);
+    constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
+        super(scene, x, y, 'tileset', key);
+        scene.add.existing(this);
+        this.setDepth(100);
+        this.gridPosition = GridPosition.byObject(this);
     }
 
-    public remove(amount:number): void {
-        let currentAmout = this.data.get(VALUE);
-        this.data.set(VALUE, currentAmout - amount);
+    protected static randomX(): number {
+        let halfTile = tile/2;
+        let skipFrom = constWorld/2 - halfTile;
+        let skipTo = skipFrom + tile;
+        let x = this.getRandomPositionInWorld();
+
+        if (x > skipFrom && x < skipTo) {
+            return this.randomX();
+        }
+
+        return x;
+    }
+
+    protected static randomY(): number {
+        return this.getRandomPositionInWorld();
+    }
+
+    private static getRandomPositionInWorld(): number {
+        return Random.int(5, constWorld -5);
     }
 
 }

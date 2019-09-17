@@ -57,7 +57,7 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
         for (let interactiveTilePosition of interactiveTilePositions) {
             let building: Building = GridPosition.filterObjectByPosition(gameScene.buildings, interactiveTilePosition);
             if (building) {
-                building.setInteractive({cursor: 'pointer'});
+                console.log(building.setInteractive({cursor: 'pointer'}));
                 InteractiveArea.interactiveBuildings.push(building);
             } else {
                 let availableAreate = new AvailableArea(gameScene, interactiveTilePosition.x, interactiveTilePosition.y);

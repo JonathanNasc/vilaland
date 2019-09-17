@@ -3,14 +3,16 @@ import { Player } from "src/sprites/player";
 import { constWorld, tile } from "src/utils/gameConfigurations"
 import { DefaultObjectsGenerator } from "src/commands/defaultObjectsGenerator";
 import { InteractiveArea } from "src/sprites/interactiveArea";
-import { Resources } from "src/components/resources";
+import { CountersRepo } from "src/components/countersRepo";
 import { Hostel } from "src/sprites/hostel";
 import { Building } from "src/components/building";
+import { Resource } from "src/components/resource";
 
 const doc = document.documentElement;
 
 export class GameScene extends Phaser.Scene {
   public buildings: Building[] = [];
+  public resources: Resource[];
   
   private player: Player;
   private interactivearea: InteractiveArea;
@@ -31,12 +33,13 @@ export class GameScene extends Phaser.Scene {
   create(): void {
     this.add.tileSprite(0, 0, constWorld * 2, constWorld * 2, 'tileset', 'grass');
     DefaultObjectsGenerator.makeMainStreet(this);
+    this.resources = DefaultObjectsGenerator.makeRandomResources(this);
 
     //testing sprites
     this.buildings.push(new Hostel(this, constWorld / 2 - tile, tile * 7 - tile /2));
 
     //menu bar
-    Resources.init(this);
+    CountersRepo.init(this);
     this.keys = this.input.keyboard.addKeys('G,S,W,B');//TODO remove it
 
     this.player = new Player(this, constWorld / 2, 0, 'player_red');
@@ -49,7 +52,7 @@ export class GameScene extends Phaser.Scene {
     this.interactivearea.update(this);
 
     if (this.keys.G.isDown) {
-      Resources.gold.add(10);
+      CountersRepo.gold.add(10);
     }
   }
 

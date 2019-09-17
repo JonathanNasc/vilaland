@@ -15,6 +15,7 @@ export class AvailableArea extends Phaser.GameObjects.TileSprite {
         this.setInteractive({cursor: 'pointer'});
         this.on('pointerover', () => this.setAlpha(0.12));
         this.on('pointerout', () => this.setAlpha(0.01));
+        this.on('pointerdown', () => this.setAlpha(0.09));
     }
 
 }

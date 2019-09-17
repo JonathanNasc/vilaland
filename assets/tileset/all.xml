@@ -1,8 +1,8 @@
 <TextureAtlas imagePath="all">
-	<SubTexture name="tree_small1" x="1029" y="636" width="38" height="92"/>
-	<SubTexture name="tree_small2" x="1030" y="728" width="37" height="66"/>
-	<SubTexture name="tree1" x="1023" y="0" width="53" height="96"/>
-	<SubTexture name="tree2" x="838" y="736" width="28" height="30"/>
+	<SubTexture name="tree2" x="1029" y="636" width="38" height="92"/>
+	<SubTexture name="tree1_s" x="1030" y="728" width="37" height="66"/>
+	<SubTexture name="tree1" x="1023" y="0" width="52" height="96"/>
+	<SubTexture name="trunk" x="838" y="736" width="28" height="30"/>
 	<SubTexture name="wood" x="795" y="737" width="72" height="30"/>
 	<SubTexture name="stone_small_x" x="804" y="603" width="36" height="32"/>
 	<SubTexture name="stone_small" x="976" y="963" width="64" height="56"/>

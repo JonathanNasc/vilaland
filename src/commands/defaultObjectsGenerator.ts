@@ -2,8 +2,26 @@
 import "phaser"
 import { constWorld, tile } from "src/utils/gameConfigurations";
 import { Street } from "src/sprites/street";
+import { Resource } from "src/components/resource";
+import { Random } from "src/utils/random";
+import { Tree } from "src/sprites/tree";
+
+const count_of_resources = 2500;
+const resource_generators = [
+    {count: Random.percent(count_of_resources, 50), generate: Tree.generate},
+];
+
 
 export class DefaultObjectsGenerator {
+
+    public static makeRandomResources(scene: Phaser.Scene) : Resource[] {
+        let resourceces: Resource[] = [];
+        for (let generator of resource_generators) {
+            resourceces.concat(generator.generate(scene, generator.count));
+        }
+
+        return resourceces;
+    }
 
     public static makeMainStreet(scene: Phaser.Scene) {
         const x_position: number = constWorld/2;
