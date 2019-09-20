@@ -6,7 +6,7 @@ import { Resource } from "src/components/resource";
 import { Random } from "src/utils/random";
 import { Tree } from "src/sprites/tree";
 
-const count_of_resources = 2500;
+const count_of_resources = 4000;
 const resource_generators = [
     {count: Random.percent(count_of_resources, 50), generate: Tree.generate},
 ];

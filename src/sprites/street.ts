@@ -1,6 +1,7 @@
 import "phaser"
 import { MovementOrder } from "src/commands/movementOrder";
 import { InteractiveArea } from "./interactiveArea";
+import { zStreet } from "src/utils/depth";
 
 export class Street extends Phaser.GameObjects.TileSprite {
   
@@ -15,7 +16,7 @@ export class Street extends Phaser.GameObjects.TileSprite {
     scene.add.existing(this);
     // scene.physics.world.enableBody(this, Phaser.Physics.Arcade.STATIC_BODY);
     this.setInteractive({cursor: 'pointer'});
-    this.setDepth(50);
+    this.setDepth(zStreet);
     this.on('pointerdown', this.onPointerDown);
   }
 

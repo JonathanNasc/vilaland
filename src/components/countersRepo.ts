@@ -1,8 +1,8 @@
 import "phaser"
 import { Counter } from "src/components/counter";
+import { zCounters } from "src/utils/depth";
 
 const inicialValue = 10;
-const depth = 200;
 
 export class CountersRepo {
 
@@ -39,20 +39,20 @@ export class CountersRepo {
   }
 
   private static createRectanglePair(scene: Phaser.Scene, y: number) {
-    scene.add.rectangle(40, y, 35, 30, 0x3C6776, 0.5).setScrollFactor(0).setDepth(depth);
-    scene.add.rectangle(80, y, 45, 30, 0x2C5564, 0.5).setScrollFactor(0).setDepth(depth);
+    scene.add.rectangle(40, y, 35, 30, 0x3C6776, 0.5).setScrollFactor(0).setDepth(zCounters);
+    scene.add.rectangle(80, y, 45, 30, 0x2C5564, 0.5).setScrollFactor(0).setDepth(zCounters);
   }
 
   private static createStatusIcon(scene: Phaser.Scene, y: number, key: string, width = 36, height = 32): Counter {
     let resource = new Counter(scene, 40, y, width, height, 'tileset', key);
     let text = scene.add.text(65, y - 7, inicialValue.toString());
     resource.setScale(0.6);
-    resource.setDepth(depth)
+    resource.setDepth(zCounters)
     resource.setScrollFactor(0);
     resource.setDataEnabled();
     resource.setData('value', inicialValue);
     text.setScrollFactor(0);
-    text.setDepth(depth);
+    text.setDepth(zCounters);
 
     resource.on('changedata', (gameObject: any, key: string, value: any) => {
       text.setText(gameObject.data.get('value'));

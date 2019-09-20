@@ -1,13 +1,10 @@
 import "phaser";
 import { Resource } from "src/components/resource"
 import { Random } from "src/utils/random";
+import { zResources } from "src/utils/depth";
 
 const treeTypes = [
     {key: 'tree1', value: 7},
-    {key: 'tree1', value: 7},
-    {key: 'tree1', value: 7},
-    {key: 'tree1_s', value: 5},
-    {key: 'trunk', value: 1},
 ]
 
 export class Tree extends Resource {
@@ -18,8 +15,12 @@ export class Tree extends Resource {
         let i = 0;
         while (totalValue > treesValue) {
             let treeType = treeTypes[Random.int(0, treeTypes.length)];
+            let y = Resource.randomY();
+            let tree = new Tree(scene, Resource.randomX(), y, treeType.key);
+
+            tree.setDepth(zResources + y);
+            trees.push(tree);
             treesValue += treeType.value;
-            trees.push(new Tree(scene, Resource.randomX(), Resource.randomY(), treeType.key));
         }
 
         return trees;

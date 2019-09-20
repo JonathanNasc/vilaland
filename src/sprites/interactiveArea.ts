@@ -4,6 +4,7 @@ import { Building } from "src/components/building";
 import { GridPosition } from "src/components/gridPosition";
 import { AvailableArea } from "./availableArea";
 import { GameScene } from "src/scenes/gameScene";
+import { zInteractiveArea } from "src/utils/depth";
 
 /**
  * The InteractiveArea is a square around the player's character,
@@ -21,7 +22,7 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
         super(scene, x, y, tile*3, tile*3, 'tileset', 'snow');
         InteractiveArea.setPosition(x, y);
         scene.add.existing(this);
-        this.setDepth(25);
+        this.setDepth(zInteractiveArea);
         this.setAlpha(0.07);
     }
 

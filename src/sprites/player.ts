@@ -1,5 +1,6 @@
 import "phaser"
 import { MovementOrder } from "src/commands/movementOrder";
+import { zPlayer } from "src/utils/depth";
 
 export class Player extends Phaser.Physics.Arcade.Sprite {
   public body: Phaser.Physics.Arcade.Body;
@@ -10,7 +11,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.world.enableBody(this);
     this.body.setCollideWorldBounds(true);
-    this.setDepth(1000);//z-index
+    this.setDepth(zPlayer);
   }
 
   update() {
