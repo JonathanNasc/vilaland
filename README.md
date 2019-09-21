@@ -1,5 +1,6 @@
 # Vilaland
 A strategy boardgame that runs on your browser
+
 <img src="assets/sample.png" alt="Sample" width="40%" height="40%" />
 
 # Starting
