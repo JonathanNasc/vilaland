@@ -5,12 +5,17 @@ import { Street } from "src/sprites/street";
 import { Resource } from "src/components/resource";
 import { Random } from "src/utils/random";
 import { Tree } from "src/sprites/tree";
+import { Stone } from "src/sprites/stone";
+import { Bronze } from "src/sprites/bronze";
+import { Gold } from "src/sprites/gold";
 
-const count_of_resources = 4000;
+const count_of_resources = 2000;
 const resource_generators = [
-    {count: Random.percent(count_of_resources, 50), generate: Tree.generate},
+    {count: Random.percent(count_of_resources, 0.5), generate: Gold.generate},
+    {count: Random.percent(count_of_resources, 1.5), generate: Bronze.generate},
+    {count: Random.percent(count_of_resources, 10), generate: Stone.generate},
+    {count: Random.percent(count_of_resources, 88), generate: Tree.generate},
 ];
-
 
 export class DefaultObjectsGenerator {
 
