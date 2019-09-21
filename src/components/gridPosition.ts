@@ -1,7 +1,7 @@
 import "phaser";
 import { tile } from "src/utils/gameConfigurations";
 
-type GameObject = Phaser.GameObjects.GameObject;
+type Sprite = Phaser.Physics.Arcade.Sprite;
 
 export class GridPosition {
 
@@ -24,11 +24,11 @@ export class GridPosition {
         return new GridPosition(row, column);
     }
 
-    public static filterObjectByPosition(objects: GameObject[], position: GridPosition): any | null {
-        return objects.filter((object: GameObject) => {
+    public static filterObjectByPosition(objects: Sprite[], position: GridPosition): Sprite[] {
+        return objects.filter((object: Sprite) => {
             let pos = GridPosition.byObject(object);
             return pos.row == position.row && pos.column == position.column
-        })[0] || null;
+        });
     }
 
     private static getPosition(coordinate: number): number {

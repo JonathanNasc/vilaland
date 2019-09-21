@@ -19,13 +19,19 @@ const resource_generators = [
 
 export class DefaultObjectsGenerator {
 
-    public static makeRandomResources(scene: Phaser.Scene) : Resource[] {
-        let resourceces: Resource[] = [];
+    public static makeRandomResources2(scene: Phaser.Scene) : Resource[] {
+        let resources: Resource[] = [];
         for (let generator of resource_generators) {
-            resourceces.concat(generator.generate(scene, generator.count));
+            resources.concat(generator.generate(scene, generator.count));
         }
 
-        return resourceces;
+        return resources;
+    }
+
+    public static makeRandomResources(scene: Phaser.Scene) : Resource[] {
+        return Array.prototype.concat.apply([], resource_generators.map((generator: any) => {
+            return generator.generate(scene, generator.count);
+        }));
     }
 
     public static makeMainStreet(scene: Phaser.Scene) {

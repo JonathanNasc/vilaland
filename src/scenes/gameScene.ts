@@ -38,7 +38,6 @@ export class GameScene extends Phaser.Scene {
     //testing sprites
     this.buildings.push(new Hostel(this, constWorld / 2 - tile, tile * 7 - tile /2));
 
-    //menu bar
     CountersRepo.init(this);
     this.keys = this.input.keyboard.addKeys('G,S,W,B');//TODO remove it
 
