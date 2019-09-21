@@ -1,6 +1,6 @@
 # Vilaland
 A strategy boardgame that runs on your browser
-![alt sample](assets/sample.png "Sample")
+<img src="assets/sample.png" alt="Sample" width="40%" height="40%" />
 
 # Starting
 - Install node and run the following commands
