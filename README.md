@@ -8,16 +8,17 @@ A strategy boardgame that runs on your browser
 - `npm start`
 
 # Roadmap
-- [X] Player movement based in the streets click points
-- [X] Interactive and available areas enabling cursor to create buildings our collect resources
-- [X] Random resources generator
-- [ ] Collect and create buildings
-- [ ] Create new street forks
-- [ ] Player turn, with players actions
-- [ ] Board turn, with NPCs actions
-- [ ] Online tables
-- [ ] Screen to show the winner
-- [ ] Screen to set the game and start a table
+- [X] Player movement based on street click points
+- [X] Set the interactive area to enable pointer cursor
+- [X] Generate Random generator
+- [ ] Allow players to collect resources
+- [ ] Allow players to create buildings
+- [ ] Allow players to create new streets and forks
+- [ ] Allow NPC's to interact with buildings
+- [ ] Set the player's turn and the board turn
+- [ ] Enable online tables
+- [ ] Screen to set the game and start a online or local table
+- [ ] Screen to show the players ranking: the richest to poorest
 
 # Creator
 jonathan.nasc@live.com
