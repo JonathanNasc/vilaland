@@ -11,15 +11,15 @@ A strategy boardgame that runs on your browser
 # Roadmap
 - [X] Player movement based on street click points
 - [X] Set the interactive area to enable pointer cursor
-- [X] Generate Random generator
+- [X] Generate Random resources
 - [ ] Allow players to collect resources
 - [ ] Allow players to create buildings
 - [ ] Allow players to create new streets and forks
-- [ ] Allow NPC's to interact with buildings
 - [ ] Set the player's turn and the board turn
+- [ ] Allow NPC's to interact with buildings
 - [ ] Enable online tables
 - [ ] Screen to set the game and start a online or local table
-- [ ] Screen to show the players ranking: the richest to poorest
+- [ ] Screen to show the players ranking: the richest to the poorest
 
 # Creator
 jonathan.nasc@live.com
