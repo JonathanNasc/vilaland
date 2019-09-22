@@ -19,4 +19,8 @@ export class Stone extends Resource {
         return new Stone(scene, x, y, type);
     }
 
+    protected onClick() {
+
+    }
+
 }

@@ -4,11 +4,16 @@ import { tile, constWorld } from "src/utils/gameConfigurations";
 import { Random } from "src/utils/random";
 import { zResources } from "src/utils/depth";
 import { ResourceType } from "./resourceType";
+import { GameScene } from "src/scenes/gameScene";
+import { ObjectsManager } from "src/components/objectsManager";
+import { InteractiveArea } from "src/sprites/interactiveArea";
 
 export class Resource extends Phaser.Physics.Arcade.Sprite {
 
     public gridPosition: GridPosition;
     public value: number;
+    public scene: GameScene;
+    public id: string;
 
     constructor(scene: Phaser.Scene, x: number, y: number, type: ResourceType) {
         super(scene, x, y, 'tileset', type.spritekey);
@@ -16,6 +21,8 @@ export class Resource extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         this.setDepth(zResources);
         this.gridPosition = GridPosition.byObject(this);
+        this.on('pointerdown', this.onClick);
+        ObjectsManager.setId(this);
     }
 
     protected static generateResources(scene: Phaser.Scene, totalValue: number, resourceTypes: Array<ResourceType>, create: CallableFunction): Resource[] {
@@ -52,9 +59,27 @@ export class Resource extends Phaser.Physics.Arcade.Sprite {
         return this.getRandomPositionInWorld();
     }
 
+    protected onClick() {}
+
     private static getRandomPositionInWorld(): number {
         const border = 5;
         return Random.int(border, constWorld - border);
+    }
+
+    public destroy() {
+        this.removeFromSceneResources();
+        InteractiveArea.removeObject(this);
+        super.destroy();
+    }
+
+    private removeFromSceneResources() {
+        const index = this.scene.resources
+            .map((resource) => resource.id)
+            .indexOf(this.id);
+        
+        if (index > -1) {
+            this.scene.resources.splice(index, 1);
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 import "phaser"
 import { GridPosition } from "src/components/gridPosition";
 import { zBuildings } from "src/utils/depth";
+import { ObjectsManager } from "./objectsManager";
 
 export class Building extends Phaser.Physics.Arcade.Sprite {
 
@@ -11,6 +12,7 @@ export class Building extends Phaser.Physics.Arcade.Sprite {
         scene.add.existing(this);
         this.setDepth(zBuildings);
         this.gridPosition = GridPosition.byObject(this);
+        ObjectsManager.setId(this);
     }
 
 }

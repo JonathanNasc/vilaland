@@ -19,15 +19,6 @@ const resource_generators = [
 
 export class DefaultObjectsGenerator {
 
-    public static makeRandomResources2(scene: Phaser.Scene) : Resource[] {
-        let resources: Resource[] = [];
-        for (let generator of resource_generators) {
-            resources.concat(generator.generate(scene, generator.count));
-        }
-
-        return resources;
-    }
-
     public static makeRandomResources(scene: Phaser.Scene) : Resource[] {
         return Array.prototype.concat.apply([], resource_generators.map((generator: any) => {
             return generator.generate(scene, generator.count);
@@ -54,17 +45,4 @@ export class DefaultObjectsGenerator {
         return currentStreet;
     }
 
-    // private static generateResource(count:number, generator: () => void) {
-    //     for(let i = 0; i < count; i++) {
-    //         generator();
-    //     }
-    // }
-
-    // private static tree() {
-    //     let x = Random.int(1, 1000);
-    //     let y = Random.int(1, 1000);
-    //     let type = Random.int(1,2);
-    //     let tree = new Tree(ResourcesGenerator.game, x, y, type);
-    //     ResourcesGenerator.game.add.existing(tree);
-    // }
 }

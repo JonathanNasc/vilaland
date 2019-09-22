@@ -16,10 +16,10 @@ A strategy boardgame that runs on your browser
 - [ ] Allow players to create buildings
 - [ ] Allow players to create new streets and forks
 - [ ] Set the player's turn and the board turn
-- [ ] Allow NPC's to interact with buildings
+- [ ] Allow NPC's and players to interact with buildings
 - [ ] Enable online tables
 - [ ] Screen to set the game and start a online or local table
-- [ ] Screen to show the players ranking: the richest to the poorest
+- [ ] Screen to show the players ranking: from the richest to the poorest
 
 # Creator
 jonathan.nasc@live.com

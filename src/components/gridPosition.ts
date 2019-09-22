@@ -35,4 +35,8 @@ export class GridPosition {
         return Math.ceil(coordinate / tile);
     }
 
+    public toString() {
+        return `${this.row}-${this.column}`;
+    }
+
 }

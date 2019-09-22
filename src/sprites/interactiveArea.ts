@@ -1,6 +1,5 @@
 import "phaser"
 import { tile } from "src/utils/gameConfigurations";
-import { Building } from "src/components/building";
 import { GridPosition } from "src/components/gridPosition";
 import { AvailableArea } from "./availableArea";
 import { GameScene } from "src/scenes/gameScene";
@@ -31,6 +30,18 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
     public static setPosition(x: number, y: number) {
         InteractiveArea.x = x;
         InteractiveArea.y = y;
+    }
+
+    public static removeObject(object: any) {
+        const index = InteractiveArea.interactiveObjects
+        .map((interactiveObject: any) => interactiveObject.id)
+        .indexOf(object.id);
+
+        console.log(index);
+    
+        if (index > -1) {
+            InteractiveArea.interactiveObjects.splice(index, 1);
+        }
     }
 
     public update(gameScene: GameScene) {
@@ -95,6 +106,9 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
         for (let object of InteractiveArea.interactiveObjects) {
             object.removeInteractive();
         }
+
+        InteractiveArea.availableAreas.splice(0, InteractiveArea.availableAreas.length);
+        InteractiveArea.interactiveObjects.splice(0, InteractiveArea.interactiveObjects.length);
     }
 
 }
