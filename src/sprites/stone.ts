@@ -1,12 +1,14 @@
 import "phaser";
 import { Resource } from "src/components/resource"
 import { ResourceType } from "src/components/resourceType";
+import { CountersRepo } from "src/components/countersRepo";
 
+const valueMinedPerClick = 2;
 const stoneTypes = [
     new ResourceType('stone_large', 10),
     new ResourceType('stone_medium', 7),
     new ResourceType('stone_small', 5),
-    new ResourceType('stone_small_x', 5),
+    new ResourceType('stone_small_x', 3),
 ]
 
 export class Stone extends Resource {
@@ -20,7 +22,7 @@ export class Stone extends Resource {
     }
 
     protected onClick() {
-
+        super.collect(valueMinedPerClick, (minedValue: number) => CountersRepo.stone.add(minedValue));
     }
 
 }

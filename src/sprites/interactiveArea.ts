@@ -36,8 +36,6 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
         const index = InteractiveArea.interactiveObjects
         .map((interactiveObject: any) => interactiveObject.id)
         .indexOf(object.id);
-
-        console.log(index);
     
         if (index > -1) {
             InteractiveArea.interactiveObjects.splice(index, 1);

@@ -61,6 +61,15 @@ export class Resource extends Phaser.Physics.Arcade.Sprite {
 
     protected onClick() {}
 
+    protected collect(valueMinedPerClick: number, addResourceValeu: CallableFunction) {
+        const minedValue = this.value >= valueMinedPerClick ? valueMinedPerClick : this.value;
+        this.value -= minedValue;
+        addResourceValeu(minedValue);
+        if (this.value < 1) {
+          this.destroy();
+        }
+    }
+
     private static getRandomPositionInWorld(): number {
         const border = 5;
         return Random.int(border, constWorld - border);

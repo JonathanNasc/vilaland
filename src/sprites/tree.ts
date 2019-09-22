@@ -22,16 +22,7 @@ export class Tree extends Resource {
   }
 
   protected onClick() {
-    this.collet();
-  }
-
-  private collet() {
-    const minedValue = this.value >= valueMinedPerClick ? valueMinedPerClick : this.value;
-    this.value -= minedValue;
-    CountersRepo.wood.add(minedValue);
-    if (this.value < 1) {
-      this.destroy();
-    }
+    super.collect(valueMinedPerClick, (minedValue: number) => CountersRepo.wood.add(minedValue));
   }
 
 }
