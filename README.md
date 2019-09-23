@@ -12,7 +12,7 @@ A strategy boardgame that runs on your browser
 - [X] Player movement based on street click points
 - [X] Set the interactive area to enable pointer cursor
 - [X] Generate Random resources
-- [ ] Allow players to collect resources
+- [X] Allow players to collect resources
 - [ ] Allow players to create buildings
 - [ ] Allow players to create new streets and forks
 - [ ] Set the player's turn and the board turn
