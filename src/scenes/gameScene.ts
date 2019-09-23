@@ -13,8 +13,8 @@ const doc = document.documentElement;
 export class GameScene extends Phaser.Scene {
   public buildings: Building[] = [];
   public resources: Resource[];
+  public player: Player;
   
-  private player: Player;
   private interactivearea: InteractiveArea;
   private keys: any;
 

@@ -2,6 +2,7 @@ import "phaser";
 import { Resource } from "src/components/resource"
 import { ResourceType } from "src/components/resourceType";
 import { CountersRepo } from "src/components/countersRepo";
+import { GameScene } from "src/scenes/gameScene";
 
 const valueMinedPerClick = 2;
 const stoneTypes = [
@@ -13,6 +14,8 @@ const stoneTypes = [
 
 export class Stone extends Resource {
 
+    public scene: GameScene;
+
     public static generate(scene: Phaser.Scene, totalValue: number): Resource[] {
         return Resource.generateResources(scene, totalValue, stoneTypes, Stone.create);
     }
@@ -22,7 +25,9 @@ export class Stone extends Resource {
     }
 
     protected onClick() {
-        super.collect(valueMinedPerClick, (minedValue: number) => CountersRepo.stone.add(minedValue));
+        super.collect(valueMinedPerClick, 'stone_small_x', (minedValue: number) => {
+            CountersRepo.stone.add(minedValue);
+        });
     }
 
 }

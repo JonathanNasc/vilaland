@@ -19,7 +19,9 @@ export class Bronze extends Resource {
     }
 
     protected onClick() {
-        super.collect(valueMinedPerClick, (minedValue: number) => CountersRepo.bronze.add(minedValue));
+        super.collect(valueMinedPerClick, 'bronze_stone_s', (minedValue: number) => {
+            CountersRepo.bronze.add(minedValue);
+        });
     }
 
 }

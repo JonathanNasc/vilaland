@@ -19,7 +19,9 @@ export class Gold extends Resource {
     }
 
     protected onClick() {
-        super.collect(valueMinedPerClick, (minedValue: number) => CountersRepo.gold.add(minedValue));
+        super.collect(valueMinedPerClick, 'coin', (minedValue: number) => {
+            CountersRepo.gold.add(minedValue);
+        });
     }
 
 }

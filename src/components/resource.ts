@@ -2,7 +2,7 @@ import "phaser";
 import { GridPosition } from "src/components/gridPosition";
 import { tile, constWorld } from "src/utils/gameConfigurations";
 import { Random } from "src/utils/random";
-import { zResources } from "src/utils/depth";
+import { zResources, zResourcePiece } from "src/utils/depth";
 import { ResourceType } from "./resourceType";
 import { GameScene } from "src/scenes/gameScene";
 import { ObjectsManager } from "src/components/objectsManager";
@@ -23,6 +23,12 @@ export class Resource extends Phaser.Physics.Arcade.Sprite {
         this.gridPosition = GridPosition.byObject(this);
         this.on('pointerdown', this.onClick);
         ObjectsManager.setId(this);
+    }
+
+    public destroy() {
+        this.removeFromSceneResources();
+        InteractiveArea.removeObject(this);
+        super.destroy();
     }
 
     protected static generateResources(scene: Phaser.Scene, totalValue: number, resourceTypes: Array<ResourceType>, create: CallableFunction): Resource[] {
@@ -61,10 +67,11 @@ export class Resource extends Phaser.Physics.Arcade.Sprite {
 
     protected onClick() {}
 
-    protected collect(valueMinedPerClick: number, addResourceValeu: CallableFunction) {
+    protected collect(valueMinedPerClick: number, pieceKey: string, addResourceValue: CallableFunction) {
         const minedValue = this.value >= valueMinedPerClick ? valueMinedPerClick : this.value;
         this.value -= minedValue;
-        addResourceValeu(minedValue);
+        addResourceValue(minedValue);
+        this.addPieceAnimation(pieceKey);
         if (this.value < 1) {
           this.destroy();
         }
@@ -75,10 +82,18 @@ export class Resource extends Phaser.Physics.Arcade.Sprite {
         return Random.int(border, constWorld - border);
     }
 
-    public destroy() {
-        this.removeFromSceneResources();
-        InteractiveArea.removeObject(this);
-        super.destroy();
+    private addPieceAnimation(pieceKey: string) {
+        const stonePiece: Phaser.GameObjects.Image = this.scene.add
+        .image(this.x, this.y, 'tileset', pieceKey)
+        .setScale(0.8)
+        .setDepth(zResourcePiece);
+
+        this.scene.tweens.add({
+            targets: stonePiece,
+            props: {x: this.scene.player.x, y: this.scene.player.y},
+            duration: 200,
+            onComplete: () => stonePiece.destroy()
+        });
     }
 
     private removeFromSceneResources() {

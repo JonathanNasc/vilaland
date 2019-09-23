@@ -22,7 +22,9 @@ export class Tree extends Resource {
   }
 
   protected onClick() {
-    super.collect(valueMinedPerClick, (minedValue: number) => CountersRepo.wood.add(minedValue));
+    super.collect(valueMinedPerClick, 'trunk', (minedValue: number) => {
+      CountersRepo.wood.add(minedValue);
+    });
   }
 
 }
