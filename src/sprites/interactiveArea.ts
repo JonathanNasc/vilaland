@@ -40,6 +40,8 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
         if (index > -1) {
             InteractiveArea.interactiveObjects.splice(index, 1);
         }
+
+        InteractiveArea.reset(object.scene);
     }
 
     public update(gameScene: GameScene) {
@@ -47,6 +49,26 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
             return;
         }
 
+        this.updatePosition();
+        InteractiveArea.reset(gameScene);
+    }
+
+    private static reset(gameScene: GameScene) {
+        InteractiveArea.clean();
+        let interactiveTilePositions = InteractiveArea.getInteractivePositions(GridPosition.byObject(this));
+        for (let position of interactiveTilePositions) {
+            let resources: Sprite[] = GridPosition.filterObjectByPosition(gameScene.resources, position);
+            let building: Sprite[] = GridPosition.filterObjectByPosition(gameScene.buildings, position);
+            let objects: Sprite[] = resources.concat(building);
+            InteractiveArea.setObjectsAsInteractive(objects);
+
+            if (objects.length == 0) {
+                InteractiveArea.availableAreas.push(new AvailableArea(gameScene, position.x, position.y));
+            }
+        }
+    }
+
+    private updatePosition() {
         this.setAlpha(0);
         this.x = InteractiveArea.x;
         this.y = InteractiveArea.y;
@@ -60,25 +82,9 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
               getEnd: () => 0.08
             }
         });
-        this.reset(gameScene);
     }
 
-    private reset(gameScene: GameScene) {
-        InteractiveArea.clean();
-        let interactiveTilePositions = this.getInteractivePositions(GridPosition.byObject(this));
-        for (let position of interactiveTilePositions) {
-            let resources: Sprite[] = GridPosition.filterObjectByPosition(gameScene.resources, position);
-            let building: Sprite[] = GridPosition.filterObjectByPosition(gameScene.buildings, position);
-            let objects: Sprite[] = resources.concat(building);
-            InteractiveArea.setObjectsAsInteractive(objects);
-
-            if (objects.length == 0) {
-                InteractiveArea.availableAreas.push(new AvailableArea(gameScene, position.x, position.y));
-            }
-        }
-    }
-
-    private getInteractivePositions(interactiveAreaPosition: GridPosition): GridPosition[] {
+    private static getInteractivePositions(interactiveAreaPosition: GridPosition): GridPosition[] {
         return [
             new GridPosition(interactiveAreaPosition.row -1, interactiveAreaPosition.column -1),
             new GridPosition(interactiveAreaPosition.row -1, interactiveAreaPosition.column + 1),
@@ -102,7 +108,7 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
         }
 
         for (let object of InteractiveArea.interactiveObjects) {
-            object.removeInteractive();
+            object.disableInteractive();
         }
 
         InteractiveArea.availableAreas.splice(0, InteractiveArea.availableAreas.length);
