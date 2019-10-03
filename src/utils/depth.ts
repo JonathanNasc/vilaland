@@ -1,3 +1,5 @@
+export const zDialogButtons = 60050;
+export const zDialog = 60000;
 export const zCounters = 50000;
 export const zResources = 2100;
 export const zResourcePiece = 2100;

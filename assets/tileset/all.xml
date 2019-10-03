@@ -37,9 +37,9 @@
 	<SubTexture name="moinho" x="640" y="640" width="126" height="128"/>
 	<SubTexture name="toproof" x="869" y="736" width="88" height="120"/>
 	<SubTexture name="house" x="871" y="0" width="88" height="120"/>
-	<SubTexture name="house_!" x="862" y="303" width="88" height="96"/>
+	<SubTexture name="hostel" x="862" y="303" width="88" height="96"/>
 	<SubTexture name="shed" x="765" y="768" width="104" height="120"/>
-	<SubTexture name="house_chamine" x="766" y="640" width="104" height="96"/>
+	<SubTexture name="tavern" x="766" y="640" width="103" height="96"/>
 	<SubTexture name="house_garagem" x="640" y="893" width="120" height="120"/>
 	<SubTexture name="store" x="976" y="883" width="64" height="80"/>
 	<SubTexture name="tree_3" x="862" y="483" width="88" height="72"/>
@@ -52,7 +52,7 @@
 	<SubTexture name="street_up" x="129" y="768" width="126" height="126"/>
 	<SubTexture name="street_vertical_t" x="1026" y="190" width="60" height="128"/>
 	<SubTexture name="street_horizontal_t" x="0" y="1024" width="128" height="60"/>
-	<SubTexture name="street_crossing_t" x="256" y="128" width="128" height="128"/>
+	<SubTexture name="street_crossing_t" x="256" y="128" width="127" height="127"/>
 	<SubTexture name="street_down_t" x="256" y="256" width="128" height="94"/>
 	<SubTexture name="street_up_t" x="256" y="606" width="128" height="94"/>
 	<SubTexture name="clay" x="256" y="700" width="128" height="128"/>

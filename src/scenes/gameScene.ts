@@ -7,6 +7,7 @@ import { CountersRepo } from "src/components/countersRepo";
 import { Hostel } from "src/sprites/hostel";
 import { Building } from "src/components/building";
 import { Resource } from "src/components/resource";
+import { OptionsToBuildDialog } from "src/components/dialogs/optionsToBuildDialog";
 
 const doc = document.documentElement;
 
@@ -14,6 +15,7 @@ export class GameScene extends Phaser.Scene {
   public buildings: Building[] = [];
   public resources: Resource[];
   public player: Player;
+  public optionsToBuild: OptionsToBuildDialog;
   
   private interactivearea: InteractiveArea;
   private keys: any;
@@ -37,6 +39,7 @@ export class GameScene extends Phaser.Scene {
 
     //testing sprites
     this.buildings.push(new Hostel(this, constWorld / 2 - tile, tile * 7 - tile /2));
+    this.optionsToBuild = new OptionsToBuildDialog(this);
 
     CountersRepo.init(this);
     this.keys = this.input.keyboard.addKeys('G,S,W,B');//TODO remove it
