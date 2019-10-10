@@ -1,8 +1,15 @@
+import "phaser";
+
 export class BuildingData {
     title: string;
     key: string;
     price: BuildingPrice;
     scale: number;
+
+    // scene objects
+    img: Phaser.GameObjects.Sprite;
+    text: Phaser.GameObjects.Text;
+    box: Phaser.GameObjects.Rectangle;
 
     public static create(title: string, key: string, scale: number): BuildingData {
         let option = new BuildingData();
@@ -33,6 +40,11 @@ export class BuildingData {
         this.price.bronze = value;
         return this;
     }
+
+    public getObjects() {
+        return [this.box, this.img, this.text];
+    }
+
 }
 
 export class BuildingPrice {
