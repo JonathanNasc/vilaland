@@ -9,7 +9,7 @@ const stoneTypes = [
     new ResourceType('stone_large', 10),
     new ResourceType('stone_medium', 7),
     new ResourceType('stone_small', 5),
-    new ResourceType('stone_small_x', 3),
+    new ResourceType('resource_stone', 3),
 ]
 
 export class Stone extends Resource {
@@ -25,7 +25,7 @@ export class Stone extends Resource {
     }
 
     protected onClick() {
-        super.collect(valueMinedPerClick, 'stone_small_x', (minedValue: number) => {
+        super.collect(valueMinedPerClick, 'resource_stone', (minedValue: number) => {
             CountersRepo.stone.add(minedValue);
         });
     }

@@ -32,8 +32,12 @@ export const buildingsOptionsData = {
         .bronze(5)
     ,
     church: BuildingData.create("Church", "church_base", 0.8)
-        .gold(3)
-        .wood(15)
-        .stone(15)
-        .bronze(10)
+        // .gold(3)
+        // .wood(15)
+        // .stone(15)
+        // .bronze(10)
+        .wood(1)
+        .stone(2)
+        .bronze(3)
+        .gold(4)
 }
