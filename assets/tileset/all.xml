@@ -3,15 +3,15 @@
 	<SubTexture name="tree1_s" x="1030" y="728" width="37" height="66"/>
 	<SubTexture name="tree1" x="1023" y="0" width="52" height="96"/>
 	<SubTexture name="trunk" x="838" y="736" width="28" height="30"/>
-	<SubTexture name="wood" x="795" y="737" width="72" height="30"/>
-	<SubTexture name="stone_small_x" x="804" y="603" width="36" height="32"/>
+	<SubTexture name="resource_wood" x="795" y="737" width="72" height="30"/>
+	<SubTexture name="resource_stone" x="804" y="603" width="36" height="32"/>
 	<SubTexture name="stone_small" x="976" y="963" width="64" height="56"/>
 	<SubTexture name="stone_medium" x="950" y="535" width="76" height="64"/>
 	<SubTexture name="stone_large" x="950" y="465" width="76" height="70"/>
 	<SubTexture name="gold" x="950" y="325" width="76" height="70"/>
-	<SubTexture name="coin" x="1080" y="858" width="36" height="30"/>
+	<SubTexture name="resource_coin" x="1080" y="858" width="36" height="30"/>
 	<SubTexture name="bush" x="903" y="255" width="40" height="46"/>
-	<SubTexture name="bronze_stone_s" x="769" y="603" width="36" height="32"/>
+	<SubTexture name="resource_bronze" x="769" y="603" width="36" height="32"/>
 	<SubTexture name="bronze_stone_m" x="952" y="190" width="64" height="56"/>
 	<SubTexture name="bronze_stone_l" x="900" y="950" width="76" height="64"/>
 	<SubTexture name="bronze_stone_lx" x="901" y="1014" width="75" height="70"/>
@@ -37,9 +37,9 @@
 	<SubTexture name="moinho" x="640" y="640" width="126" height="128"/>
 	<SubTexture name="toproof" x="869" y="736" width="88" height="120"/>
 	<SubTexture name="house" x="871" y="0" width="88" height="120"/>
-	<SubTexture name="house_!" x="862" y="303" width="88" height="96"/>
+	<SubTexture name="hostel" x="862" y="303" width="88" height="96"/>
 	<SubTexture name="shed" x="765" y="768" width="104" height="120"/>
-	<SubTexture name="house_chamine" x="766" y="640" width="104" height="96"/>
+	<SubTexture name="tavern" x="766" y="640" width="103" height="96"/>
 	<SubTexture name="house_garagem" x="640" y="893" width="120" height="120"/>
 	<SubTexture name="store" x="976" y="883" width="64" height="80"/>
 	<SubTexture name="tree_3" x="862" y="483" width="88" height="72"/>
@@ -52,7 +52,7 @@
 	<SubTexture name="street_up" x="129" y="768" width="126" height="126"/>
 	<SubTexture name="street_vertical_t" x="1026" y="190" width="60" height="128"/>
 	<SubTexture name="street_horizontal_t" x="0" y="1024" width="128" height="60"/>
-	<SubTexture name="street_crossing_t" x="256" y="128" width="128" height="128"/>
+	<SubTexture name="street_crossing_t" x="257" y="128" width="126" height="127"/>
 	<SubTexture name="street_down_t" x="256" y="256" width="128" height="94"/>
 	<SubTexture name="street_up_t" x="256" y="606" width="128" height="94"/>
 	<SubTexture name="clay" x="256" y="700" width="128" height="128"/>

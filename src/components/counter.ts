@@ -14,4 +14,8 @@ export class Counter extends Phaser.GameObjects.TileSprite {
         this.data.set(VALUE, currentAmout - amount);
     }
 
+    public get(): number {
+        return this.data.get(VALUE);
+    }
+
 }

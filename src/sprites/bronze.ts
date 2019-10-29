@@ -5,7 +5,7 @@ import { CountersRepo } from "src/components/countersRepo";
 
 const valueMinedPerClick = 2;
 const bronzeTypes = [
-    new ResourceType('bronze_stone_s', 2),
+    new ResourceType('resource_bronze', 2),
 ]
 
 export class Bronze extends Resource {
@@ -19,7 +19,7 @@ export class Bronze extends Resource {
     }
 
     protected onClick() {
-        super.collect(valueMinedPerClick, 'bronze_stone_s', (minedValue: number) => {
+        super.collect(valueMinedPerClick, 'resource_bronze', (minedValue: number) => {
             CountersRepo.bronze.add(minedValue);
         });
     }

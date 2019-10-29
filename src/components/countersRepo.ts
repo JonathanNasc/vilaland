@@ -1,6 +1,7 @@
 import "phaser"
 import { Counter } from "src/components/counter";
 import { zCounters } from "src/utils/depth";
+import { Price } from "./price";
 
 const inicialValue = 10;
 
@@ -18,24 +19,31 @@ export class CountersRepo {
     CountersRepo.initWood(scene);
   }
 
+  public static hasEnough(price: Price): boolean {
+    return price.wood <= CountersRepo.wood.get()
+      && price.stone <= CountersRepo.stone.get()
+      && price.bronze <= CountersRepo.bronze.get()
+      && price.gold <= CountersRepo.gold.get();
+  }
+
   private static initGold(scene: Phaser.Scene) {
     this.createRectanglePair(scene, 40);
-    CountersRepo.gold = this.createStatusIcon(scene, 40, 'coin');
+    CountersRepo.gold = this.createStatusIcon(scene, 40, 'resource_coin');
   }
 
   private static initStone(scene: Phaser.Scene) {
     this.createRectanglePair(scene, 80);
-    CountersRepo.stone = this.createStatusIcon(scene, 80, 'stone_small_x');
+    CountersRepo.stone = this.createStatusIcon(scene, 80, 'resource_stone');
   }
 
   private static initBronze(scene: Phaser.Scene) {
     this.createRectanglePair(scene, 120);
-    CountersRepo.bronze = this.createStatusIcon(scene, 120, 'bronze_stone_s', 35);
+    CountersRepo.bronze = this.createStatusIcon(scene, 120, 'resource_bronze', 35);
   }
 
   private static initWood(scene: Phaser.Scene) {
     this.createRectanglePair(scene, 160);
-    CountersRepo.wood = this.createStatusIcon(scene, 160, 'wood', 48, 30);
+    CountersRepo.wood = this.createStatusIcon(scene, 160, 'resource_wood', 48, 30);
   }
 
   private static createRectanglePair(scene: Phaser.Scene, y: number) {
