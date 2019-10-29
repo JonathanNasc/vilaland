@@ -4,9 +4,10 @@ import { Price } from "./price";
 
 export class BuildingData {
     title: string;
-    key: string;
+    buildingKey: string;
     price: Price;
     scale: number;
+    builder: CallableFunction;
 
     // scene objects
     img: Phaser.GameObjects.Sprite;
@@ -14,33 +15,39 @@ export class BuildingData {
     box: Phaser.GameObjects.Rectangle;
     priceContainer: Phaser.GameObjects.Container;
 
-    public static create(title: string, key: string, scale: number): BuildingData {
+    public static create(): BuildingData {
         let option = new BuildingData();
-        option.title = title;
-        option.key = key;
         option.price = new Price();
-        option.scale = scale;
 
         return option;
     }
 
-    public gold(value: number): BuildingData {
-        this.price.gold = value;
+    public withTitle(title: string): BuildingData {
+        this.title = title;
         return this;
     }
 
-    public wood(value: number): BuildingData {
-        this.price.wood = value;
+    public withBuildingKey(buildingKey: string): BuildingData {
+        this.buildingKey = buildingKey;
         return this;
     }
 
-    public stone(value: number): BuildingData {
-        this.price.stone = value;
+    public withScale(scale: number): BuildingData {
+        this.scale = scale;
         return this;
     }
 
-    public bronze(value: number): BuildingData {
-        this.price.bronze = value;
+    public withBuilder(builder: CallableFunction) {
+        this.builder = builder;
+        return this;
+    }
+
+    public withPrice(price: any) {
+        this.price.gold = price.gold;
+        this.price.wood = price.wood;
+        this.price.stone = price.stone;
+        this.price.bronze = price.bronze;
+
         return this;
     }
 

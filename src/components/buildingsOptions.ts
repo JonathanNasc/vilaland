@@ -1,43 +1,82 @@
 import { BuildingData } from "./buildingData"
+import { Hostel, hostelBuildingKey } from "src/sprites/hostel";
+import { Church, churchBuildingKey } from "src/sprites/church";
+import { Tavern, tavernBuildingKey } from "src/sprites/tavern";
+
+export const streetBuildingKey = "street_crossing_t";
+export const storeBuildingKey = "store";
+export const shedBuildingKey = "shed";
 
 export const buildingsOptionsData = {
-    street: BuildingData.create("Street", "street_crossing_t", 0.6)
-        .gold(0)
-        .wood(12)
-        .stone(0)
-        .bronze(0)
+    street: BuildingData.create()
+        .withTitle("Street")
+        .withBuildingKey(streetBuildingKey)
+        .withScale(0.6)
+        .withBuilder(Hostel.create)
+        .withPrice({
+            gold: 0,
+            wood: 12,
+            stone: 0,
+            bronze: 0
+        })
     ,
-    hostel: BuildingData.create("Hostel", "hostel", 0.8)
-        .gold(1)
-        .wood(10)
-        .stone(5)
-        .bronze(0)
+    hostel: BuildingData.create()
+        .withTitle("Hostel")
+        .withBuildingKey(hostelBuildingKey)
+        .withScale(0.68)
+        .withBuilder(Hostel.create)
+        .withPrice({
+            gold: 1,
+            wood: 10,
+            stone: 5,
+            bronze: 0
+        })
     ,
-    store: BuildingData.create("Store", "store", 0.9)
-        .gold(1)
-        .wood(5)
-        .stone(10)
-        .bronze(2)
+    store: BuildingData.create()
+        .withTitle("Store")
+        .withBuildingKey(storeBuildingKey)
+        .withScale(0.9)
+        .withBuilder(Hostel.create)
+        .withPrice({
+            gold: 1,
+            wood: 5,
+            stone: 10,
+            bronze: 2
+        })
     ,
-    tavern: BuildingData.create("Tavern", "tavern", 0.8)
-        .gold(1)
-        .wood(10)
-        .stone(10)
-        .bronze(5)
+    tavern: BuildingData.create()
+        .withTitle("Tavern")
+        .withBuildingKey(tavernBuildingKey)
+        .withScale(0.8)
+        .withBuilder(Tavern.create)
+        .withPrice({
+            gold: 1,
+            wood: 10,
+            stone: 10,
+            bronze: 5
+        })
     ,
-    shed: BuildingData.create("Shed", "shed", 0.6)
-        .gold(0)
-        .wood(10)
-        .stone(15)
-        .bronze(5)
+    shed: BuildingData.create()
+        .withTitle("Shed")
+        .withBuildingKey(shedBuildingKey)
+        .withScale(0.6)
+        .withBuilder(Hostel.create)
+        .withPrice({
+            gold: 0,
+            wood: 10,
+            stone: 15,
+            bronze: 5
+        })
     ,
-    church: BuildingData.create("Church", "church_base", 0.8)
-        // .gold(3)
-        // .wood(15)
-        // .stone(15)
-        // .bronze(10)
-        .wood(1)
-        .stone(2)
-        .bronze(3)
-        .gold(4)
+    church: BuildingData.create()
+        .withTitle("Church")
+        .withBuildingKey(churchBuildingKey)
+        .withScale(0.8)
+        .withBuilder(Church.create)
+        .withPrice({
+            gold: 3,
+            wood: 15,
+            stone: 15,
+            bronze: 10
+        })
 }

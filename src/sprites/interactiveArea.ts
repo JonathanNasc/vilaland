@@ -53,7 +53,7 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
         InteractiveArea.reset(gameScene);
     }
 
-    private static reset(gameScene: GameScene) {
+    public static reset(gameScene: GameScene) {
         InteractiveArea.clean();
         let interactiveTilePositions = InteractiveArea.getInteractivePositions(GridPosition.byObject(this));
         for (let position of interactiveTilePositions) {

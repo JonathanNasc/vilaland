@@ -24,7 +24,10 @@ export class AvailableArea extends Phaser.GameObjects.TileSprite {
 
     private onClick() {
         this.setAlpha(0.09);
-        this.scene.optionsToBuild.open();
+        this.scene.optionsToBuild.show({
+            x: this.x,
+            y: this.y
+        });
     }
 
 }

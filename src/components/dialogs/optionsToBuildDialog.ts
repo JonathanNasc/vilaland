@@ -1,9 +1,11 @@
 import "phaser";
 import { Dialog } from "src/components/dialogs/Dialog";
 import { tile, invisible, visible } from "src/utils/gameConfigurations";
+import { CreateBuildingCommand } from "src/commands/createBuildingCommand";
 import { buildingsOptionsData } from "../buildingsOptions";
 import { BuildingData } from "../buildingData";
 import { CountersRepo } from "../countersRepo";
+import { GameScene } from "src/scenes/gameScene";
 
 class Option {data: BuildingData;x: number;y: number;}
 const border = 5;
@@ -21,14 +23,21 @@ const options: Option[] = [
 ];
 
 export class OptionsToBuildDialog extends Dialog {
+
+    public scene: GameScene;
+    private command: CreateBuildingCommand;
     
     constructor(scene: Phaser.Scene) {
         super(scene, optionSize * 3, optionSize * 2);
         options.forEach((option) => this.createOption(option));
     }
 
-    public open() {
+    public show(instructions: any) {
         super.open();
+        this.command = new CreateBuildingCommand();
+        this.command.x = instructions.x;
+        this.command.y = instructions.y;
+
         options.forEach((option) => this.setAvailabilty(option));
     }
 
@@ -40,7 +49,7 @@ export class OptionsToBuildDialog extends Dialog {
             .setScrollFactor(0);
 
         opt.data.img = this.scene.add
-            .sprite(opt.x, opt.y, 'tileset', opt.data.key)
+            .sprite(opt.x, opt.y, 'tileset', opt.data.buildingKey)
             .setScrollFactor(0)
             .setScale(opt.data.scale);
 
@@ -53,7 +62,7 @@ export class OptionsToBuildDialog extends Dialog {
         opt.data.priceContainer = this.makePriceContainer(opt);
         opt.data.box.on('pointerover', () => this.onPointerOver(opt));
         opt.data.box.on('pointerout', () => this.onPointerOut(opt));
-        opt.data.box.on('pointerdown', this.onClick);
+        opt.data.box.on('pointerdown', () => this.onClick(opt));
         
         super.add([
             opt.data.box,
@@ -63,8 +72,13 @@ export class OptionsToBuildDialog extends Dialog {
         ]);
     }
 
-    private onClick() {
-        
+private onClick(opt: Option) {
+        if (!CountersRepo.hasEnough(opt.data.price)) {
+            return;
+        }
+
+        this.command.create(this.scene, opt.data.builder);
+        this.close();
     }
 
     private onPointerOver(opt: Option) {
