@@ -25,24 +25,16 @@ export class DefaultObjectsGenerator {
         }));
     }
 
-    public static makeMainStreet(scene: Phaser.Scene) {
+    public static makeMainStreet(scene: Phaser.Scene): Street[] {
         const x_position: number = constWorld/2;
         const count_of_streets = constWorld/tile;
-        let pastStreet: Street;
+        let streets: Street[] = [];
 
         for (let i = 1; i <= count_of_streets; i++) {
-            let currentStreet = new Street(scene, x_position, i * tile - (tile/2));
-            pastStreet = DefaultObjectsGenerator.setStreetReferences(currentStreet, pastStreet);
-        }
-    }
-
-    private static setStreetReferences(currentStreet: Street, pastStreet: Street | null): Street {
-        if (pastStreet) {
-            pastStreet.streetDown = currentStreet;
+            streets.push(new Street(scene, x_position, i * tile - (tile/2), Street.KEY_VERTICAL));
         }
 
-        currentStreet.streetUp = pastStreet;
-        return currentStreet;
+        return streets;
     }
 
 }

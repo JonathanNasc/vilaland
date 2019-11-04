@@ -18,8 +18,12 @@ export class GridPosition {
     }
 
     public static byObject(object: any): GridPosition {
-        let column = GridPosition.getPosition(object.x);
-        let row = GridPosition.getPosition(object.y);
+        return GridPosition.byCoordinates(object.x, object.y);
+    }
+
+    public static byCoordinates(x: number, y: number) {
+        let column = GridPosition.getPosition(x);
+        let row = GridPosition.getPosition(y);
 
         return new GridPosition(row, column);
     }

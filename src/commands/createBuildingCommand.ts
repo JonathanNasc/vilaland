@@ -7,7 +7,7 @@ export class CreateBuildingCommand {
     public y: number;
 
     public create(scene: GameScene, builder: CallableFunction) {
-        scene.buildings.push(builder(scene, this.x, this.y));
+        builder(scene, this.x, this.y);
         InteractiveArea.reset(scene);
     }
 
