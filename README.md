@@ -13,8 +13,8 @@ A strategy boardgame that runs on your browser
 - [X] Set the interactive area to enable pointer cursor
 - [X] Generate Random resources
 - [X] Allow players to collect resources
-- [ ] Allow players to create buildings
-- [ ] Allow players to create new streets and forks
+- [X] Allow players to create buildings
+- [X] Allow players to create new streets and forks
 - [ ] Set the player's turn and the board turn
 - [ ] Allow NPC's and players to interact with buildings
 - [ ] Enable online tables

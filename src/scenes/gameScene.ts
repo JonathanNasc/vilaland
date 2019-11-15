@@ -38,17 +38,11 @@ export class GameScene extends Phaser.Scene {
     this.add.tileSprite(0, 0, constWorld * 2, constWorld * 2, 'tileset', 'grass');
     this.streets = DefaultObjectsGenerator.makeMainStreet(this);
     this.resources = DefaultObjectsGenerator.makeRandomResources(this);
-
-    //testing sprites
-    this.buildings.push(new Hostel(this, constWorld / 2 - tile, tile * 7 - tile /2));
     this.optionsToBuild = new OptionsToBuildDialog(this);
-
-    CountersRepo.init(this);
-    this.keys = this.input.keyboard.addKeys('G,S,W,B');//TODO remove it
-
     this.player = new Player(this, constWorld / 2, 0, 'player_red');
     this.interactivearea = new InteractiveArea(this, -tile*3, -tile*3);
     this.setWorldAndCamera();
+    CountersRepo.init(this);
   }
 
   update(time: any): void {
