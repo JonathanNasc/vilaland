@@ -2,8 +2,8 @@ import { BuildingData } from "./buildingData"
 import { Hostel, hostelBuildingKey } from "src/sprites/hostel";
 import { Church, churchBuildingKey } from "src/sprites/church";
 import { Tavern, tavernBuildingKey } from "src/sprites/tavern";
+import { Street, streetBuildingKey } from "src/sprites/street";
 
-export const streetBuildingKey = "street_crossing_t";
 export const storeBuildingKey = "store";
 export const shedBuildingKey = "shed";
 
@@ -12,7 +12,7 @@ export const buildingsOptionsData = {
         .withTitle("Street")
         .withBuildingKey(streetBuildingKey)
         .withScale(0.6)
-        .withBuilder(Hostel.create)
+        .withBuilder(Street.create)
         .withPrice({
             gold: 0,
             wood: 12,

@@ -8,12 +8,14 @@ import { Hostel } from "src/sprites/hostel";
 import { Building } from "src/components/building";
 import { Resource } from "src/components/resource";
 import { OptionsToBuildDialog } from "src/components/dialogs/optionsToBuildDialog";
+import { Street } from "src/sprites/street";
 
 const doc = document.documentElement;
 
 export class GameScene extends Phaser.Scene {
   public buildings: Building[] = [];
-  public resources: Resource[];
+  public resources: Resource[] = [];
+  public streets: Street[] = [];
   public player: Player;
   public optionsToBuild: OptionsToBuildDialog;
   
@@ -34,7 +36,7 @@ export class GameScene extends Phaser.Scene {
 
   create(): void {
     this.add.tileSprite(0, 0, constWorld * 2, constWorld * 2, 'tileset', 'grass');
-    DefaultObjectsGenerator.makeMainStreet(this);
+    this.streets = DefaultObjectsGenerator.makeMainStreet(this);
     this.resources = DefaultObjectsGenerator.makeRandomResources(this);
 
     //testing sprites

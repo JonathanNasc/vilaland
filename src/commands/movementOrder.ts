@@ -1,5 +1,6 @@
 import "phaser"
 import { Player } from "src/sprites/player";
+import { Street } from "src/sprites/street";
 
 const STATUS_OK = "ok";
 const STATUS_PENDING = "pe";
@@ -13,9 +14,9 @@ export class MovementOrder {
     private static y: number;
 
     public static moveTo(x: number, y: number) {
-        this.x = x;
-        this.y = y;
-        this.status = STATUS_PENDING;
+        MovementOrder.x = x;
+        MovementOrder.y = y;
+        MovementOrder.status = STATUS_PENDING;
     }
 
     public static move(player: Player) {
