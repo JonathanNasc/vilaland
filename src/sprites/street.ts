@@ -37,7 +37,6 @@ export class Street extends Phaser.GameObjects.Sprite {
 
   constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
     super(scene, x, y, 'tileset', 'roadway_straight');
-    this.key = key;
     this.setKeyPosition(key);
     this.scene.add.existing(this);
     this.scene.streets.push(this);
@@ -53,22 +52,23 @@ export class Street extends Phaser.GameObjects.Sprite {
   }
 
   public setKeyPosition(key: string) {
+    this.key = key;
     switch (key) {
       case Street.KEY_VERTICAL: return this.adjust(Street.FRAME_ROADWAY_STRAIGHT, 90);
-      case Street.KEY_VERTICAL_RIGHT: return this.adjust(Street.FRAME_ROADWAY_FORK);
+      case Street.KEY_VERTICAL_RIGHT: return this.adjust(Street.FRAME_ROADWAY_FORK, 0);
       case Street.KEY_VERTICAL_LEFT: return this.adjust(Street.FRAME_ROADWAY_FORK, 180);
-      case Street.KEY_HORIZONTAL: return this.adjust(Street.FRAME_ROADWAY_STRAIGHT);
+      case Street.KEY_HORIZONTAL: return this.adjust(Street.FRAME_ROADWAY_STRAIGHT, 0);
       case Street.KEY_HORIZONTAL_UP: return this.adjust(Street.FRAME_ROADWAY_FORK, 270);
       case Street.KEY_HORIZONTAL_DOWN: return this.adjust(Street.FRAME_ROADWAY_FORK, 90);
       case Street.KEY_RIGHT_DOWN: return this.adjust(Street.FRAME_ROADWAY_CORNER, 90);
       case Street.KEY_LEFT_DOWN: return this.adjust(Street.FRAME_ROADWAY_CORNER, 180);
-      case Street.KEY_RIGHT_UP: return this.adjust(Street.FRAME_ROADWAY_CORNER);
+      case Street.KEY_RIGHT_UP: return this.adjust(Street.FRAME_ROADWAY_CORNER, 0);
       case Street.KEY_LEFT_UP: return this.adjust(Street.FRAME_ROADWAY_CORNER, 270);
-      case Street.KEY_LEFT: return this.adjust(Street.FRAME_ROADWAY_ALLEY);
+      case Street.KEY_LEFT: return this.adjust(Street.FRAME_ROADWAY_ALLEY, 0);
       case Street.KEY_RIGHT: return this.adjust(Street.FRAME_ROADWAY_ALLEY, 180);
       case Street.KEY_UP: return this.adjust(Street.FRAME_ROADWAY_ALLEY, 90);
       case Street.KEY_DOWN: return this.adjust(Street.FRAME_ROADWAY_ALLEY, 270);
-      case Street.KEY_CROSSING: return this.adjust(Street.FRAME_ROADWAY_CROSSING);
+      case Street.KEY_CROSSING: return this.adjust(Street.FRAME_ROADWAY_CROSSING, 0);
     }
   }
 
@@ -110,6 +110,9 @@ export class Street extends Phaser.GameObjects.Sprite {
       if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_VERTICAL;
       if (currentAdjecentKey == Street.KEY_LEFT) return Street.KEY_RIGHT_UP;
       if (currentAdjecentKey == Street.KEY_RIGHT) return Street.KEY_LEFT_UP;
+      if (currentAdjecentKey == Street.KEY_HORIZONTAL_DOWN) return Street.KEY_CROSSING;
+      if (currentAdjecentKey == Street.KEY_RIGHT_DOWN) return Street.KEY_VERTICAL_RIGHT;
+      if (currentAdjecentKey == Street.KEY_LEFT_DOWN) return Street.KEY_VERTICAL_LEFT;
     }
 
     if (newStreetKey == Street.KEY_DOWN) {
@@ -117,20 +120,30 @@ export class Street extends Phaser.GameObjects.Sprite {
       if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_VERTICAL;
       if (currentAdjecentKey == Street.KEY_LEFT) return Street.KEY_RIGHT_DOWN;
       if (currentAdjecentKey == Street.KEY_RIGHT) return Street.KEY_LEFT_DOWN;
+      if (currentAdjecentKey == Street.KEY_HORIZONTAL_UP) return Street.KEY_CROSSING;
+      if (currentAdjecentKey == Street.KEY_RIGHT_UP) return Street.KEY_VERTICAL_RIGHT;
+      if (currentAdjecentKey == Street.KEY_LEFT_UP) return Street.KEY_VERTICAL_LEFT;
+
     }
 
     if (newStreetKey == Street.KEY_RIGHT) {
       if (currentAdjecentKey == Street.KEY_VERTICAL) return Street.KEY_VERTICAL_RIGHT;
       if (currentAdjecentKey == Street.KEY_RIGHT) return Street.KEY_HORIZONTAL;
       if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_RIGHT_DOWN;
-      if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_LEFT_DOWN;
+      if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_RIGHT_UP;
+      if (currentAdjecentKey == Street.KEY_VERTICAL_LEFT) return Street.KEY_CROSSING;
+      if (currentAdjecentKey == Street.KEY_LEFT_UP) return Street.KEY_HORIZONTAL_UP;
+      if (currentAdjecentKey == Street.KEY_LEFT_DOWN) return Street.KEY_HORIZONTAL_DOWN;
     }
 
     if (newStreetKey == Street.KEY_LEFT) {
       if (currentAdjecentKey == Street.KEY_VERTICAL) return Street.KEY_VERTICAL_LEFT;
       if (currentAdjecentKey == Street.KEY_LEFT) return Street.KEY_HORIZONTAL;
-      if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_RIGHT_UP;
-      if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_LEFT_UP;
+      if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_LEFT_DOWN;
+      if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_RIGHT_DOWN;
+      if (currentAdjecentKey == Street.KEY_VERTICAL_RIGHT) return Street.KEY_CROSSING;
+      if (currentAdjecentKey == Street.KEY_RIGHT_UP) return Street.KEY_HORIZONTAL_UP;
+      if (currentAdjecentKey == Street.KEY_RIGHT_DOWN) return Street.KEY_HORIZONTAL_DOWN;
     }
 
     throw new Error(`No key mapped for adjacent street: {new: ${newStreetKey}, current: ${currentAdjecentKey}}`);
@@ -141,11 +154,9 @@ export class Street extends Phaser.GameObjects.Sprite {
     InteractiveArea.setPosition(this.x, this.y);
   }
 
-  private adjust(key: string, rotation?: number): void {
+  private adjust(key: string, rotation: number): void {
     this.setFrame(key);
-    if (rotation) {
-      this.setAngle(rotation);
-    }
+    this.setAngle(rotation);
   }
   
 }
