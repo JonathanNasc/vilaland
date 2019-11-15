@@ -140,7 +140,7 @@ export class Street extends Phaser.GameObjects.Sprite {
       if (currentAdjecentKey == Street.KEY_VERTICAL) return Street.KEY_VERTICAL_LEFT;
       if (currentAdjecentKey == Street.KEY_LEFT) return Street.KEY_HORIZONTAL;
       if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_LEFT_DOWN;
-      if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_RIGHT_DOWN;
+      if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_LEFT_UP;
       if (currentAdjecentKey == Street.KEY_VERTICAL_RIGHT) return Street.KEY_CROSSING;
       if (currentAdjecentKey == Street.KEY_RIGHT_UP) return Street.KEY_HORIZONTAL_UP;
       if (currentAdjecentKey == Street.KEY_RIGHT_DOWN) return Street.KEY_HORIZONTAL_DOWN;
@@ -158,5 +158,5 @@ export class Street extends Phaser.GameObjects.Sprite {
     this.setFrame(key);
     this.setAngle(rotation);
   }
-  
+
 }

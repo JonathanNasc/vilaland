@@ -92,6 +92,8 @@ export class InteractiveArea extends Phaser.GameObjects.TileSprite {
             new GridPosition(interactiveAreaPosition.row, interactiveAreaPosition.column + 1),
             new GridPosition(interactiveAreaPosition.row + 1, interactiveAreaPosition.column - 1),
             new GridPosition(interactiveAreaPosition.row + 1, interactiveAreaPosition.column + 1),
+            new GridPosition(interactiveAreaPosition.row + 1, interactiveAreaPosition.column),
+            new GridPosition(interactiveAreaPosition.row - 1, interactiveAreaPosition.column),
         ]
     }
 
