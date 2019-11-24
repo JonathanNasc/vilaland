@@ -49,11 +49,40 @@ export class Street extends Phaser.GameObjects.Sprite {
   public static create(scene: GameScene, x: number, y: number) {
     const pos: GridPosition = GridPosition.byCoordinates(x, y);
     const adjacentSet: any = Street.getAdjacentSet(pos, scene.streets);
-    const key = Street.getPositionKey(adjacentSet);
-    const currentKey = adjacentSet[key].key;
-    adjacentSet[key].setKeyPosition(Street.getNewKeyForAdjacent(key, currentKey));
-
+    let key = Street.getPositionKey(adjacentSet);
+    key = Street.adjustKeyAndAdjacents(adjacentSet, key);
+    
     return new Street(scene, x, y, key);
+  }
+
+  public static adjustKeyAndAdjacents(adjacentSet: any, key: string): string {    
+    const adjacents: Array<Street> = Street.filterAdjacents(adjacentSet);
+    const adjacent1 = adjacentSet[key];
+    const countOfLength = <number> adjacents.length;
+    adjacent1.setKeyPosition(Street.getNewKeyForAdjacent(key, adjacent1.key, 1));
+
+    if (countOfLength == 1) {
+      return key;
+    }
+
+    if (countOfLength == 2) {
+      const adjacent2 = adjacents[0].key != adjacent1.key ? adjacents[0] : adjacents[1];
+      adjacent2.setKeyPosition(Street.getNewKeyForAdjacent(key, adjacent2.key, 2))
+      return key == Street.KEY_UP || key == this.KEY_DOWN ? Street.KEY_VERTICAL : Street.KEY_HORIZONTAL;
+    }
+
+    throw new Error("More then 2 adjacent streets is not expected");
+  }
+
+  private static filterAdjacents(adjacentSet: any): Array<Street> {
+    let adjacentsNotEmpty: Array<Street> = [];
+    for (let key in adjacentSet) {
+      if (adjacentSet[key]) {
+        adjacentsNotEmpty.push(adjacentSet[key]);
+      }
+    }
+
+    return adjacentsNotEmpty;
   }
 
   public setKeyPosition(key: string) {
@@ -105,8 +134,9 @@ export class Street extends Phaser.GameObjects.Sprite {
     return objects[0];
   }
 
-  private static getNewKeyForAdjacent(newStreetKey: string, currentAdjecentKey: string): string {
-    if (newStreetKey == Street.KEY_UP) {
+  private static getNewKeyForAdjacent(newStreetKey: string, currentAdjecentKey: string, adjacentNumber = 1): string {
+    let keyByNumber = adjacentNumber == 1 ? Street.KEY_UP : Street.KEY_DOWN;
+    if (newStreetKey == keyByNumber) {
       if (currentAdjecentKey == Street.KEY_HORIZONTAL) return Street.KEY_HORIZONTAL_UP;
       if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_VERTICAL;
       if (currentAdjecentKey == Street.KEY_LEFT) return Street.KEY_RIGHT_UP;
@@ -116,7 +146,8 @@ export class Street extends Phaser.GameObjects.Sprite {
       if (currentAdjecentKey == Street.KEY_LEFT_DOWN) return Street.KEY_VERTICAL_LEFT;
     }
 
-    if (newStreetKey == Street.KEY_DOWN) {
+    keyByNumber = adjacentNumber == 1 ? Street.KEY_DOWN : Street.KEY_UP;
+    if (newStreetKey == keyByNumber) {
       if (currentAdjecentKey == Street.KEY_HORIZONTAL) return Street.KEY_HORIZONTAL_DOWN;
       if (currentAdjecentKey == Street.KEY_DOWN) return Street.KEY_VERTICAL;
       if (currentAdjecentKey == Street.KEY_LEFT) return Street.KEY_RIGHT_DOWN;
@@ -127,7 +158,8 @@ export class Street extends Phaser.GameObjects.Sprite {
 
     }
 
-    if (newStreetKey == Street.KEY_RIGHT) {
+    keyByNumber = adjacentNumber == 1 ? Street.KEY_RIGHT : Street.KEY_LEFT;
+    if (newStreetKey == keyByNumber) {
       if (currentAdjecentKey == Street.KEY_VERTICAL) return Street.KEY_VERTICAL_RIGHT;
       if (currentAdjecentKey == Street.KEY_RIGHT) return Street.KEY_HORIZONTAL;
       if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_RIGHT_DOWN;
@@ -137,7 +169,8 @@ export class Street extends Phaser.GameObjects.Sprite {
       if (currentAdjecentKey == Street.KEY_LEFT_DOWN) return Street.KEY_HORIZONTAL_DOWN;
     }
 
-    if (newStreetKey == Street.KEY_LEFT) {
+    keyByNumber = adjacentNumber == 1 ? Street.KEY_LEFT : Street.KEY_RIGHT;
+    if (newStreetKey == keyByNumber) {
       if (currentAdjecentKey == Street.KEY_VERTICAL) return Street.KEY_VERTICAL_LEFT;
       if (currentAdjecentKey == Street.KEY_LEFT) return Street.KEY_HORIZONTAL;
       if (currentAdjecentKey == Street.KEY_UP) return Street.KEY_LEFT_DOWN;
