@@ -47,7 +47,12 @@ export class Street extends Phaser.GameObjects.Sprite {
   }
 
   public static create(scene: GameScene, x: number, y: number) {
-    const key = Street.getPositionKey(x, y, scene.streets);
+    const pos: GridPosition = GridPosition.byCoordinates(x, y);
+    const adjacentSet: any = Street.getAdjacentSet(pos, scene.streets);
+    const key = Street.getPositionKey(adjacentSet);
+    const currentKey = adjacentSet[key].key;
+    adjacentSet[key].setKeyPosition(Street.getNewKeyForAdjacent(key, currentKey));
+
     return new Street(scene, x, y, key);
   }
 
@@ -72,13 +77,9 @@ export class Street extends Phaser.GameObjects.Sprite {
     }
   }
 
-  private static getPositionKey(x: number, y: number, streets: any[]): string {
-    let pos: GridPosition = GridPosition.byCoordinates(x, y);
-    let adjacentSet: any = Street.getAdjacentSet(pos, streets);
+  private static getPositionKey(adjacentSet: any): string {
     for (let key in adjacentSet) {
       if (adjacentSet[key]) {
-        let currentKey = adjacentSet[key].key;
-        adjacentSet[key].setKeyPosition(Street.getNewKeyForAdjacent(key, currentKey));
         return key;
       }
     }

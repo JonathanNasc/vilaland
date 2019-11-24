@@ -48,10 +48,6 @@ export class GameScene extends Phaser.Scene {
   update(time: any): void {
     this.player.update();
     this.interactivearea.update(this);
-
-    if (this.keys.G.isDown) {
-      CountersRepo.gold.add(10);
-    }
   }
 
   private setWorldAndCamera(): void {
