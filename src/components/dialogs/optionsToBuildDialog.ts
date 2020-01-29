@@ -6,6 +6,8 @@ import { buildingsOptionsData } from "../buildingsOptions";
 import { BuildingData } from "../buildingData";
 import { CountersRepo } from "../countersRepo";
 import { GameScene } from "src/scenes/gameScene";
+import { Street } from "src/sprites/street";
+import { GridPosition } from "../gridPosition";
 
 class Option {data: BuildingData;x: number;y: number;}
 const border = 5;
@@ -72,8 +74,8 @@ export class OptionsToBuildDialog extends Dialog {
         ]);
     }
 
-private onClick(opt: Option) {
-        if (!CountersRepo.hasEnough(opt.data.price)) {
+    private onClick(opt: Option) {
+        if (!this.isOptionAvailable(opt)) {
             return;
         }
 
@@ -83,14 +85,13 @@ private onClick(opt: Option) {
 
     private onPointerOver(opt: Option) {
         opt.data.box.setAlpha(visible);
-        opt.data.img.setAlpha(invisible);
         opt.data.priceContainer.setAlpha(visible);
         this.setAvailabilty(opt);
+        opt.data.img.setAlpha(invisible);
     }
 
     private onPointerOut(opt: Option) {
         opt.data.box.setAlpha(0.5);
-        opt.data.img.setAlpha(visible);
         opt.data.priceContainer.setAlpha(invisible);
         this.setAvailabilty(opt);
     }
@@ -144,13 +145,26 @@ private onClick(opt: Option) {
     }
 
     private setAvailabilty(opt: Option) {
-        if (CountersRepo.hasEnough(opt.data.price)) {
-            opt.data.box.setInteractive({cursor: 'pointer'});
+        if (this.isOptionAvailable(opt)) {
             opt.data.text.setAlpha(visible);
+            opt.data.img.setAlpha(visible);
+            opt.data.box.setInteractive({cursor: 'pointer'});
         } else {
+            opt.data.text.setAlpha(0.4);
+            opt.data.img.setAlpha(0.4);
             opt.data.box.setInteractive();
-            opt.data.text.setAlpha(0.3);
         }
+    }
+
+    private isOptionAvailable(opt: Option): boolean {
+        const hasResourcesEnough = CountersRepo.hasEnough(opt.data.price);
+        if (opt.data.title == 'Street') {
+            const pos = GridPosition.byCoordinates(this.command.x, this.command.y);
+            const available = Street.isPositionAvailable(pos, this.scene.streets);
+            return hasResourcesEnough && available;
+        }
+
+        return hasResourcesEnough 
     }
 
 }

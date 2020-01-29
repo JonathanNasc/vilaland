@@ -48,6 +48,10 @@ export class Street extends Phaser.GameObjects.Sprite {
 
   public static create(scene: GameScene, x: number, y: number) {
     const pos: GridPosition = GridPosition.byCoordinates(x, y);
+    if (!Street.isPositionAvailable(pos, scene.streets)) {
+      return;
+    }
+
     const adjacentSet: any = Street.getAdjacentSet(pos, scene.streets);
     let key = Street.getPositionKey(adjacentSet);
     key = Street.adjustKeyAndAdjacents(adjacentSet, key);
@@ -72,6 +76,11 @@ export class Street extends Phaser.GameObjects.Sprite {
     }
 
     throw new Error("More then 2 adjacent streets is not expected");
+  }
+
+  public static isPositionAvailable(gridPosition: GridPosition, streets: any): boolean {
+    const adjancentSet = Street.getAdjacentSet(gridPosition, streets);
+    return <number> Street.filterAdjacents(adjancentSet).length == 1;
   }
 
   private static filterAdjacents(adjacentSet: any): Array<Street> {
